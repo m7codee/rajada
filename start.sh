@@ -9,6 +9,7 @@ cd rajada;
 apt install python3 -y
 echo "Metodo de rajada - 10/s";
 pip3 install pyaes;
+pip3 install pyautogui;
 while :
 do
 python3 rajada.py;
