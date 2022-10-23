@@ -2,6 +2,7 @@ apt update;
 apt upgrade -y;
 apt install git -y;
 termux-setup-storage;
+cd ..;
 cd storage/downloads;
 git clone https://github.com/m7codee/rajada;
 cd rajada;
