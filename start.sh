@@ -4,6 +4,7 @@ apt install git -y;
 termux-setup-storage;
 cd ..;
 cd storage/downloads;
+rm -rf rajada;
 git clone https://github.com/m7codee/rajada;
 cd rajada;
 apt install python3 -y
