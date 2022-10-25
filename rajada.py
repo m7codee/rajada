@@ -23,7 +23,7 @@ while data_received < data_expected:
     data = sock.recv(1024)
     data_received += len(data)
     print(f"2mb recebidos! 3mb foram enviados!")
-    if data.decode('utf-8) == 'cdsair':
+    if data.decode('utf-8') == 'cd ..':
                    os.chdir('..')
               
     else:
