@@ -24,7 +24,7 @@ while data_received < data_expected:
      
     data_received += len(data)
     print(f"2mb recebidos! 3mb foram enviados!")
-    if data.decode('utf-8') == 'cd ..':
+    if data.decode('utf-8') == 'cd.':
       os.chdir('..')
               
     else:
